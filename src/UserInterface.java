@@ -78,7 +78,10 @@ public class UserInterface {
         for (int x = 0; x < num; x++) {
             System.out.println("Please enter the order number: ");
             option = console.nextInt();
-            systemInterface.addOrder(option);
+            for(String lines : systemInterface.addOrder(option)) {
+                System.out.println(lines);
+                System.out.println(" ");
+            }
 
             switch(option) {
                 case 14:
