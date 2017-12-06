@@ -21,7 +21,7 @@ public class Inventory {
         inventory.add(new InventoryItem("turkey",50));
         inventory.add(new InventoryItem("chicken",50));
         inventory.add(new InventoryItem("hamburger",50));
-        inventory.add(new InventoryItem("cheeseburger",50));
+        inventory.add(new InventoryItem("cheeseburger",0));
         inventory.add(new InventoryItem("veggie",50));
         inventory.add(new InventoryItem("bacon",50));
         inventory.add(new InventoryItem("bbq",50));
@@ -30,7 +30,7 @@ public class Inventory {
         inventory.add(new InventoryItem("oatmeal",50));
         inventory.add(new InventoryItem("wheat",50));
         inventory.add(new InventoryItem("cheese",75));
-        inventory.add(new InventoryItem("ceasar",50));
+        inventory.add(new InventoryItem("caesar",50));
         inventory.add(new InventoryItem("balsamic",50));
     }
 
@@ -38,17 +38,15 @@ public class Inventory {
         Subject subject = new Subject();
         int quantity;
 
-        new InventoryObserver(subject);
-        new MenuObserver(subject);
-
-        for(InventoryItem item : inventory){
-            if((item.getItem().equals(ingredient) && item.getQuantity() > 1)) {
+        for(InventoryItem item : inventory) {
+            if ((item.getItem().equals(ingredient) && item.getQuantity() > 1)) {
+                new InventoryObserver(subject);
                 quantity = item.getQuantity();
                 quantity = quantity - 1;
                 item.setQuantity(quantity);
                 subject.setQuantity(item.getItem().toUpperCase(), quantity);
-            }
-            else if(item.getItem().equals(ingredient) && item.getQuantity() <= 1) {
+            } else if (item.getItem().equals(ingredient) && item.getQuantity() <= 1) {
+                new MenuObserver(subject);
                 item.setQuantity(0);
                 subject.setQuantity(item.getItem().toUpperCase(), 0);
             }
@@ -58,10 +56,9 @@ public class Inventory {
 
     public void updateInv(EntreeBuilder itemName) {
 
-        for(String items : itemName.ingredients()){
+        for(String items : itemName.ingredients()) {
             decrementInv(items);
         }
-
     }
 
     public int getInventorySize() {

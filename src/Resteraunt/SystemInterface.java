@@ -48,7 +48,6 @@ public class SystemInterface {
     public static String[] printTab() {
         Tab tab = invoker.getTab();
         String item;
-        fillTab();
         Iterator<String> tabItr = tab.iterator();
         int i = 0;
         String[] lines = new String[tab.getTotal()];
@@ -60,14 +59,6 @@ public class SystemInterface {
         tab.clearTab();
 
         return lines;
-    }
-
-    public static void fillTab() {
-        Tab tab = invoker.getTab();
-        Menu menu = invoker.getMenu();
-        Orders order = invoker.getOrders();
-
-        tab.fillList(menu, order);
     }
 
     public static String[] calcTotal() {
@@ -100,7 +91,8 @@ public class SystemInterface {
 
     public static void adaptMenu(EntreeBuilder entree, int itemCode) {
         Menu menu = invoker.getMenu();
-        MenuAdapter adapter = new MenuAdapter(entree, menu);
+        Tab tab = invoker.getTab();
+        MenuAdapter adapter = new MenuAdapter(entree, menu, tab);
 
         adapter.updateMenuItem(itemCode);
     }

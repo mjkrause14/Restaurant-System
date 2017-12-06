@@ -68,12 +68,14 @@ public class UserInterface {
     }
 
     public static void addOrder(Scanner console, SystemInterface systemInterface) {
-        System.out.println("How many orders?: ");
-        int num = console.nextInt();
-        int option;
+
         EntreeBuilder burger;
         EntreeBuilder sandwich;
         EntreeBuilder salad;
+
+        System.out.println("How many orders?: ");
+        int num = console.nextInt();
+        int option;
 
         for (int x = 0; x < num; x++) {
             System.out.println("Please enter the order number: ");

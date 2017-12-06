@@ -10,15 +10,8 @@ public class Tab {
         orders = new ArrayList<>();
     }
 
-    public ArrayList<String> fillList(Menu menu, Orders order) {
-        for(int x = 0; x < order.getTotalOrders(); x++) {
-            for(int y = 0; y < menu.totalMenuItems(); y++) {
-                if(order.getOrderItem(x).getItemNum() == menu.getMenuItem(y).getItemNum()){
-                    orders.add(menu.getMenuItem(y).toString());
-                }
-            }
-        }
-        return orders;
+    public void addItem(String item) {
+        orders.add(item);
     }
 
     public void clearTab() {

@@ -10,7 +10,7 @@ public class ChickenSalad extends SaladBuilder {
         salad.setExtra("chicken");
     }
     public void buildDressing() {
-        salad.setDressing("ceasar");
+        salad.setDressing("caesar");
     }
 
 }

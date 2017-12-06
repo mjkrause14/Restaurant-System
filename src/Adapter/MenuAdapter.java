@@ -1,5 +1,6 @@
 package Adapter;
 
+import InvokerItems.Tab;
 import MealBuilder.EntreeBuilder;
 import InvokerItems.Menu;
 import InvokerItems.MenuItem;
@@ -9,10 +10,12 @@ public class MenuAdapter {
     private EntreeBuilder entree;
     private Menu menu;
     private Menu newMenu;
+    private Tab tab;
 
-    public MenuAdapter(EntreeBuilder entree, Menu menu) {
+    public MenuAdapter(EntreeBuilder entree, Menu menu, Tab tab) {
         this.entree = entree;
         this.menu = menu;
+        this.tab = tab;
         newMenu = new Menu();
     }
 
@@ -29,20 +32,7 @@ public class MenuAdapter {
     public void updateMenuItem(int itemCode) {
         MenuItem item = getMenuItem(itemCode);
 
-        switch(itemCode){
-            case 14:
-                item.setEntree(entree.entreeType());
-                newMenu.addMenuItem(item);
-                break;
-            case 16:
-                item.setEntree(entree.entreeType());
-                break;
-            case 18:
-                item.setEntree(entree.entreeType());
-                break;
-            default:
-                System.out.println("Invalid Option!");
-                break;
-        }
+        item.setEntree(entree.entreeType());
+        tab.addItem(item.toString());
     }
 }

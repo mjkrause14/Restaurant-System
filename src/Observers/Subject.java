@@ -3,12 +3,15 @@ package Observers;
 
 import java.util.*;
 
-public class Subject {
+public class Subject implements SubjectInterface {
 
-    private ArrayList<Observer> observers = new ArrayList<>();
+    private ArrayList<Observer> observers;
     private int quantity;
     private String item;
 
+    public Subject() {
+        observers = new ArrayList<>();
+    }
     public int getQuantity() {
         return quantity;
     }
@@ -23,8 +26,12 @@ public class Subject {
         notifyObservers();
     }
 
-    public void add(Observer observer) {
+    public void register(Observer observer) {
         observers.add(observer);
+    }
+
+    public void unregister(Observer observer) {
+        observers.remove(observer);
     }
 
     public void notifyObservers() {

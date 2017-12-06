@@ -1,12 +1,12 @@
 package Observers;
 
-public class InventoryObserver extends Observer{
+public class InventoryObserver implements Observer{
 
     private Subject subject;
 
     public InventoryObserver(Subject subject) {
         this.subject = subject;
-        this.subject.add(this);
+        this.subject.register(this);
     }
 
     public void update() {
