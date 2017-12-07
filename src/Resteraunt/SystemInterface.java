@@ -14,7 +14,7 @@ import java.util.*;
 
 public class SystemInterface {
 
-    public static Invoker invoker;
+    private static Invoker invoker;
 
     public static void init() {
         invoker = new Invoker(new Menu(), new Orders(), new Tab(), new Inventory());

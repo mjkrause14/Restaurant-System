@@ -21,7 +21,7 @@ public class Inventory {
         inventory.add(new InventoryItem("turkey",50));
         inventory.add(new InventoryItem("chicken",50));
         inventory.add(new InventoryItem("hamburger",50));
-        inventory.add(new InventoryItem("cheeseburger",0));
+        inventory.add(new InventoryItem("cheeseburger",50));
         inventory.add(new InventoryItem("veggie",50));
         inventory.add(new InventoryItem("bacon",50));
         inventory.add(new InventoryItem("bbq",50));
@@ -39,19 +39,18 @@ public class Inventory {
         int quantity;
 
         for(InventoryItem item : inventory) {
-            if ((item.getItem().equals(ingredient) && item.getQuantity() > 1)) {
+            if ((item.getItem().equals(ingredient) && item.getQuantity() >= 1)) {
                 new InventoryObserver(subject);
                 quantity = item.getQuantity();
                 quantity = quantity - 1;
                 item.setQuantity(quantity);
                 subject.setQuantity(item.getItem().toUpperCase(), quantity);
-            } else if (item.getItem().equals(ingredient) && item.getQuantity() <= 1) {
+            } else if (item.getItem().equals(ingredient) && item.getQuantity() < 1) {
                 new MenuObserver(subject);
                 item.setQuantity(0);
                 subject.setQuantity(item.getItem().toUpperCase(), 0);
             }
         }
-        System.out.println(" ");
     }
 
     public void updateInv(EntreeBuilder itemName) {

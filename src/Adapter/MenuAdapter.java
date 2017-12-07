@@ -9,14 +9,12 @@ public class MenuAdapter {
 
     private EntreeBuilder entree;
     private Menu menu;
-    private Menu newMenu;
     private Tab tab;
 
     public MenuAdapter(EntreeBuilder entree, Menu menu, Tab tab) {
         this.entree = entree;
         this.menu = menu;
         this.tab = tab;
-        newMenu = new Menu();
     }
 
 

@@ -50,16 +50,4 @@ public class Director {
         salad.buildExtra();
         salad.buildDressing();
     }
-
-    public String saladToString() {
-        return salad.toString();
-    }
-
-    public String sandwichToString() {
-        return sandwich.toString();
-    }
-
-    public String burgerToString() {
-        return burger.toString();
-    }
 }

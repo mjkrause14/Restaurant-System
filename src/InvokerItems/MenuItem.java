@@ -26,6 +26,7 @@ public class MenuItem {
     public void setEntree(String newEntree) {
         this.entree = newEntree;
     }
+
     public String toString() {
         return "Item Number: " + itemNum + "\n" + "Entree: " + entree + "\n" + "Price: " + price + "\n";
     }
