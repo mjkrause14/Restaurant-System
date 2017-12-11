@@ -37,16 +37,15 @@ public class Inventory {
     public void decrementInv(String ingredient) {
         Subject subject = new Subject();
         int quantity;
+        new InventoryObserver(subject);
 
         for(InventoryItem item : inventory) {
             if ((item.getItem().equals(ingredient) && item.getQuantity() >= 1)) {
-                new InventoryObserver(subject);
                 quantity = item.getQuantity();
                 quantity = quantity - 1;
                 item.setQuantity(quantity);
                 subject.setQuantity(item.getItem().toUpperCase(), quantity);
             } else if (item.getItem().equals(ingredient) && item.getQuantity() < 1) {
-                new MenuObserver(subject);
                 item.setQuantity(0);
                 subject.setQuantity(item.getItem().toUpperCase(), 0);
             }
@@ -54,9 +53,21 @@ public class Inventory {
     }
 
     public void updateInv(EntreeBuilder itemName) {
-
         for(String items : itemName.ingredients()) {
             decrementInv(items);
+        }
+    }
+
+    public void checkInventory(EntreeBuilder itemName, SubMenu subMenu) {
+        Subject subject = new Subject();
+
+        new MenuObserver(subject);
+
+        for(String items : itemName.ingredients()) {
+            for(InventoryItem item : inventory) {
+                if(item.getItem().equals(items) && item.getQuantity() == 0)
+                    subject.setMenuItem(subMenu, itemName.entreeType().toLowerCase());
+            }
         }
     }
 

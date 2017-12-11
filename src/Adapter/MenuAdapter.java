@@ -30,7 +30,25 @@ public class MenuAdapter {
     public void updateMenuItem(int itemCode) {
         MenuItem item = getMenuItem(itemCode);
 
-        item.setEntree(entree.entreeType());
-        tab.addItem(item.toString());
+        switch(itemCode){
+            case 14:
+                item.setEntree(entree.entreeType());
+                tab.addItem(item.toString());
+                item.setEntree("Burger");
+                break;
+            case 16:
+                item.setEntree(entree.entreeType());
+                tab.addItem(item.toString());
+                item.setEntree("Sandwich");
+                break;
+            case 18:
+                item.setEntree(entree.entreeType());
+                tab.addItem(item.toString());
+                item.setEntree("Salad");
+                break;
+            default:
+                System.out.println("Invalid Option!");
+                break;
+        }
     }
 }

@@ -1,14 +1,9 @@
 package Resteraunt;
 
 import Adapter.MenuAdapter;
+import InvokerItems.*;
 import MealBuilder.EntreeBuilder;
 import CommandClasses.Invoker;
-import InvokerItems.Inventory;
-import InvokerItems.InventoryItem;
-import InvokerItems.Menu;
-import InvokerItems.MenuItem;
-import InvokerItems.Orders;
-import InvokerItems.Tab;
 
 import java.util.*;
 
@@ -17,7 +12,7 @@ public class SystemInterface {
     private static Invoker invoker;
 
     public static void init() {
-        invoker = new Invoker(new Menu(), new Orders(), new Tab(), new Inventory());
+        invoker = new Invoker(new Menu(), new Orders(), new Tab(), new Inventory(), new BurgerMenu(), new SandwichMenu(), new SaladMenu());
     }
 
     public static String[] printMenu() {
@@ -32,6 +27,38 @@ public class SystemInterface {
         while(menuItr.hasNext()) {
             item = menuItr.next();
             lines[i] = item.toString();
+            i++;
+        }
+        return lines;
+    }
+
+    public static String[] printSubMenu(int x) {
+        SubMenu subMenu;
+        switch(x) {
+            case 1:
+                subMenu = invoker.getBurgerMenu();
+                break;
+            case 2:
+                subMenu = invoker.getSandwichMenu();
+                break;
+            case 3:
+                subMenu = invoker.getSaladMenu();
+                break;
+            default:
+                subMenu = null;
+                break;
+        }
+
+        if(subMenu.size() == 0)
+            subMenu.fillMenu();
+
+        String item;
+        Iterator<SubMenuItem> subMenuItr = subMenu.iterator();
+        int i = 0;
+        String[] lines = new String[subMenu.size()];
+        while(subMenuItr.hasNext()) {
+            item = subMenuItr.next().toString();
+            lines[i] = item;
             i++;
         }
         return lines;
@@ -99,10 +126,33 @@ public class SystemInterface {
 
     public static void updateInv(EntreeBuilder dish) {
         Inventory inventory = invoker.getInventory();
+
         if(inventory.getInventorySize() == 0)
             inventory.fillInventory();
 
         inventory.updateInv(dish);
+    }
 
+    public static void checkInv(EntreeBuilder dish, int x) {
+
+        SubMenu subMenu;
+        Inventory inventory = invoker.getInventory();
+
+        switch(x) {
+            case 1:
+                subMenu = invoker.getBurgerMenu();
+                break;
+            case 2:
+                subMenu = invoker.getSandwichMenu();
+                break;
+            case 3:
+                subMenu = invoker.getSaladMenu();
+                break;
+            default:
+                subMenu = null;
+                break;
+        }
+
+        inventory.checkInventory(dish, subMenu);
     }
 }

@@ -10,6 +10,11 @@ public class InventoryObserver implements Observer{
     }
 
     public void update() {
-        System.out.println(subject.getItem() + " New Quantity: " + subject.getQuantity());
+        if(subject.getQuantity() >= 1) {
+            System.out.println(subject.getItem() + " New Quantity: " + subject.getQuantity());
+        }
+        else {
+            System.out.println(subject.getItem() + " is out of stock");
+        }
     }
 }

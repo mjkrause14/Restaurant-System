@@ -40,7 +40,6 @@ public class Menu {
         return new MenuIterator();
     }
 
-
     private class MenuIterator implements Iterator<MenuItem> {
         private int index = 0;
 

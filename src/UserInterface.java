@@ -89,14 +89,17 @@ public class UserInterface {
                 case 14:
                     burger = burgerBuilder(console, systemInterface);
                     systemInterface.updateInv(burger);
+                    systemInterface.checkInv(burger, 1);
                     break;
                 case 16:
                     sandwich = sandwichBuilder(console, systemInterface);
                     systemInterface.updateInv(sandwich);
+                    systemInterface.checkInv(sandwich,2);
                     break;
                 case 18:
                     salad = saladBuilder(console, systemInterface);
                     systemInterface.updateInv(salad);
+                    systemInterface.checkInv(salad, 3);
                     break;
                 default:
                     System.err.println("Invalid Option!");
@@ -124,7 +127,9 @@ public class UserInterface {
         int itemCode = 14;
 
         System.out.println("What type of burger?: ");
-        System.out.println("1-Hamburger" + "\n" + "2-Cheeseburger" + "\n" + "3-Veggieburger");
+        for (String lines : systemInterface.printSubMenu(1)) {
+            System.out.println(lines);
+        }
         int choice = console.nextInt();
 
         switch(choice) {
@@ -160,7 +165,9 @@ public class UserInterface {
         int itemCode = 16;
 
         System.out.println("What type of sandwich?: ");
-        System.out.println("1-Ham and Cheese" + "\n" + "2-Turkey Club");
+        for (String lines : systemInterface.printSubMenu(2)) {
+            System.out.println(lines);
+        }
         int choice = console.nextInt();
 
         switch(choice) {
@@ -190,7 +197,9 @@ public class UserInterface {
         int itemCode = 18;
 
         System.out.println("What type of salad?: ");
-        System.out.println("1-Chicken Salad" + "\n" + "2-Veggie Salad");
+        for (String lines : systemInterface.printSubMenu(3)) {
+            System.out.println(lines);
+        }
         int choice = console.nextInt();
 
         switch(choice) {

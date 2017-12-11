@@ -1,5 +1,9 @@
 package Observers;
 
+import InvokerItems.SubMenuItem;
+
+import java.util.Iterator;
+
 public class MenuObserver implements Observer {
 
     private Subject subject;
@@ -10,6 +14,12 @@ public class MenuObserver implements Observer {
     }
 
     public void update() {
-        System.out.println(subject.getItem() + " is out of stock");
+        Iterator<SubMenuItem> itemItr = subject.getSubMenu().itemIterator(subject.getItemName());
+        SubMenuItem subMenuItem;
+
+        while(itemItr.hasNext()){
+            subMenuItem = itemItr.next();
+            subject.getSubMenu().removeItem(subMenuItem);
+        }
     }
 }
